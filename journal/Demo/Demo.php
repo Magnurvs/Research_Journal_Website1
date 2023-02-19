@@ -1,0 +1,29 @@
+ <?php
+$con=$mysql = new mysqli("localhost","root","","upload_file_db");
+if(con)
+echo "Connection Done";
+
+ if(isset($_POST['Upload']))
+//   $files=$_FILES['file'];
+//   print_r($files);
+  $file_name=$_FILES['file']['name'];
+  $file_type=$_FILES['file']['type'];
+  $file_size=$_FILES['file']['size'];
+  $file_tem_loc=$_FILES['file']['tmp_name'];
+  $file_store="upload/".$file_name;
+  if(move_uploaded_file($file_tem_loc,$file_store))
+      echo "Your File Uploaded Successfully..!";
+?>
+    <!DOCTYPE html>
+    <html>
+    <h1>File Upload Example</h1>
+
+    <body>
+        <form action="?" method="POST" enctype="multipart/form-data">
+            Choose File: <input type="file" name="file">
+            <br>
+            <input type="submit" name="Upload">
+        </form>
+    </body>
+
+    </html>
